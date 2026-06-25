@@ -144,7 +144,104 @@ endif
 
 ###############################################################################
 
+comment "Legacy options removed in 2026.08"
+
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_SAP
+	bool "bluez sap plugin removed"
+	select BR2_LEGACY
+	help
+	  Build plugin for SAP profile.
+
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_HEALTH
+	bool "bluez health plugin removed"
+	select BR2_LEGACY
+	help
+	  Build plugin for health profiles.
+
+config BR2_GCC_VERSION_13_X
+	bool "gcc 13.x support removed"
+	select BR2_LEGACY
+	help
+	  Support for building a toolchain based on GCC 13.x has been
+	  removed, chose a newer GCC version instead.
+
+config BR2_PACKAGE_QEMU_TARGET_MICROBLAZEEL
+	bool "qemu target microblazeel removed"
+	select BR2_PACKAGE_QEMU_TARGET_MICROBLAZE
+	select BR2_LEGACY
+	help
+	  Version 11.0.0 of qemu folded microblazeel support into
+	  the microblaze target.
+
 comment "Legacy options removed in 2026.05"
+
+config BR2_PACKAGE_PTPD2
+	bool "ptpd2 removed"
+	select BR2_LEGACY
+	help
+	  ptpd2 was no longer maintained upstream, so it has been
+	  dropped.
+
+config BR2_PACKAGE_LIBHDHOMERUN
+	bool "libhdhomerun"
+	select BR2_LEGACY
+	help
+	  libhdhomerun was removed from Buildroot as it was
+	  insufficiently maintained. It can be re-added if someone
+	  volunteers to  maintain it.
+
+config BR2_PACKAGE_KODI_PVR_HDHOMERUN
+	bool "kodi-pvr-hdhomerun"
+	select BR2_LEGACY
+	help
+	  kodi-pvr-hdhomerun was removed from Buildroot as it was
+	  insufficiently maintained. It can be re-added if someone
+	  volunteers to maintain it.
+
+config BR2_PACKAGE_ZEEK
+	bool "zeek removed"
+	select BR2_LEGACY
+	help
+	  The zeek package was not maintained, with numerous build
+	  issues and severely lagging behind upstream. so it has been
+	  dropped.
+
+config BR2_PACKAGE_PIGPIO
+	bool "pigpio removed"
+	select BR2_LEGACY
+	help
+	  pigpio was no longer maintained upstream, so it has been
+	  dropped.
+
+config BR2_PACKAGE_XML_SECURITY_C
+	bool "xml-security-c removed"
+	select BR2_LEGACY
+	help
+	  xml-security-c was no longer maintained upstream, so it has
+	  been dropped.
+
+config BR2_PACKAGE_LIBPHIDGET
+	bool "libphidget"
+	select BR2_LEGACY
+	help
+	  libphidget was removed from Buildroot as it was
+	  insufficiently maintained. It can be re-added if someone
+	  volunteers to maintain it.
+
+config BR2_PACKAGE_PHIDGETWEBSERVICE
+	bool "phidgetwebservice"
+	select BR2_LEGACY
+	help
+	  phidgetwebservice was removed from Buildroot as it was
+	  insufficiently maintained. It can be re-added if someone
+	  volunteers to maintain it.
+
+config BR2_PACKAGE_DAQ
+	bool "daq removed"
+	select BR2_LEGACY
+	help
+	  The only dependee, snort, has been removed. Look at daq3
+	  for an alternative.
 
 config BR2_PACKAGE_FWTS_EFI_RUNTIME_MODULE
 	bool "fwts efi_runtime kernel module removed"
@@ -232,6 +329,13 @@ config BR2_BINUTILS_VERSION_2_43_X
 	help
 	  binutils 2.43 has been removed, select a newer version
 	  instead.
+
+config BR2_parisc10
+	bool "PA-RISC architecture version 1.0 support removed"
+	select BR2_LEGACY
+	help
+	  Following the build issues with glibc 2.43, Buildroot has
+	  removed support for this architecture version.
 
 comment "Legacy options removed in 2026.02"
 
