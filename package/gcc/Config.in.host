@@ -2,18 +2,10 @@ comment "GCC Options"
 
 choice
 	prompt "GCC compiler Version"
-	default BR2_GCC_VERSION_ARC if BR2_GCC_VERSION_4_8_ARC # legacy
-	default BR2_GCC_VERSION_ARC if BR2_arc
 	default BR2_GCC_VERSION_POWERPC_SPE if BR2_POWERPC_CPU_HAS_SPE
 	default BR2_GCC_VERSION_15_X
 	help
 	  Select the version of gcc you wish to use.
-
-config BR2_GCC_VERSION_ARC
-	bool "gcc arc (14.2)"
-	# Only supported architecture
-	depends on BR2_arc
-	select BR2_TOOLCHAIN_GCC_AT_LEAST_14
 
 config BR2_GCC_VERSION_POWERPC_SPE
 	bool "gcc powerpc spe"
@@ -68,10 +60,9 @@ config BR2_GCC_SUPPORTS_DLANG
 config BR2_GCC_VERSION
 	string
 	default "8.4.0"     if BR2_GCC_VERSION_POWERPC_SPE
-	default "14.3.0"    if BR2_GCC_VERSION_14_X
-	default "15.2.0"    if BR2_GCC_VERSION_15_X
-	default "16.1.0"    if BR2_GCC_VERSION_16_X
-	default "arc-2024.12-release" if BR2_GCC_VERSION_ARC
+	default "14.4.0"    if BR2_GCC_VERSION_14_X
+	default "15.3.0"    if BR2_GCC_VERSION_15_X
+	default "16.2.0"    if BR2_GCC_VERSION_16_X
 
 config BR2_EXTRA_GCC_CONFIG_OPTIONS
 	string "Additional gcc options"
@@ -98,6 +89,8 @@ config BR2_TOOLCHAIN_BUILDROOT_FORTRAN
 	# on architecture building libquadmath, wchar is required
 	depends on !BR2_TOOLCHAIN_HAS_LIBQUADMATH || \
 		(BR2_TOOLCHAIN_HAS_LIBQUADMATH && BR2_USE_WCHAR)
+	# requires fork() since gcc 16.x
+	depends on BR2_USE_MMU
 	select BR2_TOOLCHAIN_HAS_FORTRAN
 	help
 	  Enable this option if you want your toolchain to support the

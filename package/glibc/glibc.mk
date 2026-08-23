@@ -7,44 +7,23 @@
 # Generate version string using:
 #   git describe --match 'glibc-*' --abbrev=40 origin/release/MAJOR.MINOR/master | cut -d '-' -f 2-
 # When updating the version, please also update localedef
-GLIBC_VERSION = 2.43-27-g4070d808bea1c077eb7e7d52b52b91cae98205d5
-GLIBC_SITE = https://sourceware.org/git/glibc.git
+GLIBC_VERSION = 2.44-23-g11ac3d78fc5e4f7f2846002e099f773ad8ff82fc
+GLIBC_SITE = https://gitlab.com/gnutools/glibc.git
 GLIBC_SITE_METHOD = git
 
-GLIBC_LICENSE = GPL-2.0+ (programs), LGPL-2.1+, BSD-3-Clause, MIT (library)
-GLIBC_LICENSE_FILES = COPYINGv2 COPYING.LESSERv2 LICENSES
+GLIBC_LICENSE = \
+	GPL-2.0+ (programs), \
+	LGPL-2.1+, BSD-2-Clause, BSD-3-Clause, BSL-1.0, FSFAP, ISC, other permissive licenses, public domain (library), \
+	LGPL-3.0+ (sysdeps/htl/raise.c, for Hurd only), \
+	GPL-3.0+ (scripts/move-if-change), \
+	GPL-3.0+ WITH Texinfo-exception (manual/texinfo.tex), \
+	GFDL-1.3-or-later (manual)
+GLIBC_LICENSE_FILES = COPYINGv2 COPYING.LESSERv2 COPYINGv3 LICENSES manual/fdl-1.3.texi
 GLIBC_CPE_ID_VENDOR = gnu
 
 # Extract the base version (e.g. 2.38) from GLIBC_VERSION in order to
 # allow proper matching with the CPE database.
 GLIBC_CPE_ID_VERSION = $(word 1, $(subst -,$(space),$(GLIBC_VERSION)))
-
-# Fixed by glibc-2.41-64-g1e16d0096d80a6e12d5bfa8e0aafdd13c47efd65
-GLIBC_IGNORE_CVES += CVE-2025-8058
-
-# Fixed by glibc-2.42-49-gb0ec8fb689df862171f0f78994a3bdeb51313545
-GLIBC_IGNORE_CVES += CVE-2026-0861
-
-# Fixed by glibc-2.42-50-g453e6b8dbab935257eb0802b0c97bca6b67ba30e
-GLIBC_IGNORE_CVES += CVE-2026-0915
-
-# Fixed by glibc-2.42-51-gcbf39c26b25801e9bc88499b4fd361ac172d4125
-GLIBC_IGNORE_CVES += CVE-2025-15281
-
-# Fixed by glibc-2.43-16-g5c6fca0c62ce5bd6e68e259f138097756cbafd4d
-GLIBC_IGNORE_CVES += CVE-2026-4437
-
-# Fixed by glibc-2.43-17-gdd9945c0ba40d2dbc9eb7c99291ba6b69bd66718
-GLIBC_IGNORE_CVES += CVE-2026-4438
-
-# Fixed by glibc-2.43-22-g8362e8ce10b24068bacc19552c128dd10e082fd9
-GLIBC_IGNORE_CVES += CVE-2026-4046
-
-# Fixed by glibc-2.43-26-g2890b35cd361df2517525bf2c5f8c63f6f0d4a20
-GLIBC_IGNORE_CVES += CVE-2026-5928
-
-# Fixed by glibc-2.43-27-g4070d808bea1c077eb7e7d52b52b91cae98205d5
-GLIBC_IGNORE_CVES += CVE-2026-5450
 
 # This CVE is considered as not being security issues by
 # upstream glibc:
