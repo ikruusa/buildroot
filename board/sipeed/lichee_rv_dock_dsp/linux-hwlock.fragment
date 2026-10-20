@@ -1,0 +1,9 @@
+# Test scaffolding: exercise the sun6i hardware spinlock on the D1.
+# Config fragment so the shared board/sipeed/lichee_rv_dock/linux.config
+# stays untouched.
+CONFIG_HWSPINLOCK=y
+CONFIG_HWSPINLOCK_SUN6I=y
+
+# Needed to load the contention test as a module
+CONFIG_MODULES=y
+CONFIG_D1_HWLOCK_TEST=m

@@ -1,0 +1,44 @@
+BR2_riscv=y
+BR2_KERNEL_HEADERS_7_1=y
+BR2_BINUTILS_VERSION_2_46_X=y
+BR2_GCC_VERSION_16_X=y
+BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
+BR2_ROOTFS_OVERLAY="board/sipeed/lichee_rv/overlay board/sipeed/lichee_rv_dock/overlay board/sipeed/lichee_rv_dock_dsp/overlay"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh board/sipeed/lichee_rv_dock_dsp/post-image.sh"
+BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/sipeed/lichee_rv_dock/genimage.cfg"
+BR2_LINUX_KERNEL=y
+# ikruusa/linux, branch d1-hwspinlock-test (3 hwspinlock patches + test module)
+BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
+BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,423559a4203910f130f3dc6da21abeb8509e347c)/linux-423559a4203910f130f3dc6da21abeb8509e347c.tar.gz"
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/sipeed/lichee_rv_dock/linux.config"
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="board/sipeed/lichee_rv_dock_dsp/linux-hwlock.fragment"
+BR2_LINUX_KERNEL_INSTALL_TARGET=y
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_4=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="120M"
+# BR2_TARGET_ROOTFS_TAR is not set
+BR2_TARGET_OPENSBI=y
+# ikruusa/opensbi, branch sun20i-changes-v5:
+#   - add the allwinner,sun20i-d1s compatible
+#   - reset via the reserved watchdog@20500a0 (status "reserved" is skipped by
+#     generic FDT discovery, so it is bound from the platform override)
+#   - claim the whole page for the console UART (D1s UART3 at 0x2500c00 is not
+#     page aligned, which the PMP cannot encode, so the region was skipped)
+BR2_TARGET_OPENSBI_CUSTOM_TARBALL=y
+BR2_TARGET_OPENSBI_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,opensbi,sun20i-changes-v5)/opensbi-sun20i-changes-v5.tar.gz"
+BR2_TARGET_OPENSBI_PLAT="generic"
+# BR2_TARGET_OPENSBI_INSTALL_JUMP_IMG is not set
+BR2_TARGET_UBOOT=y
+BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
+# ikruusa/u-boot, branch sun20i-dsp-v1 (+ hwlock/carveout test scaffolding)
+BR2_TARGET_UBOOT_CUSTOM_TARBALL=y
+BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,0685f23cb1154dd0aad7f73f0d9ae15e85db561c)/u-boot-0685f23cb1154dd0aad7f73f0d9ae15e85db561c.tar.gz"
+BR2_TARGET_UBOOT_BOARD_DEFCONFIG="lichee_rv_dock"
+BR2_TARGET_UBOOT_NEEDS_PYLIBFDT=y
+BR2_TARGET_UBOOT_NEEDS_OPENSSL=y
+BR2_TARGET_UBOOT_NEEDS_OPENSBI=y
+# BR2_TARGET_UBOOT_FORMAT_BIN is not set
+BR2_TARGET_UBOOT_FORMAT_CUSTOM=y
+BR2_TARGET_UBOOT_FORMAT_CUSTOM_NAME="u-boot-sunxi-with-spl.bin"
+BR2_PACKAGE_HOST_GENIMAGE=y
