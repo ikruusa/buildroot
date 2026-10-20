@@ -1,0 +1,42 @@
+BR2_riscv=y
+BR2_KERNEL_HEADERS_7_1=y
+BR2_BINUTILS_VERSION_2_46_X=y
+BR2_GCC_VERSION_16_X=y
+BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
+BR2_ROOTFS_OVERLAY="board/sipeed/nezha_dsp/overlay"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh board/sipeed/nezha_dsp/post-image.sh"
+BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/sipeed/nezha_dsp/genimage.cfg"
+BR2_LINUX_KERNEL=y
+# ikruusa/linux, branch d1-hwspinlock-test (3 hwspinlock patches + test module)
+BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
+BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,d1-hwspinlock-test)/linux-d1-hwspinlock-test.tar.gz"
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/sipeed/lichee_rv_dock/linux.config"
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="board/sipeed/lichee_rv_dock_dsp/linux-hwlock.fragment"
+BR2_LINUX_KERNEL_INSTALL_TARGET=y
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_4=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="120M"
+# BR2_TARGET_ROOTFS_TAR is not set
+BR2_TARGET_OPENSBI=y
+# ikruusa/opensbi, branch sun20i-changes-v5:
+#   - add the allwinner,sun20i-d1s compatible
+#   - reset via the reserved watchdog@20500a0
+#   - claim the whole page for the console UART
+BR2_TARGET_OPENSBI_CUSTOM_TARBALL=y
+BR2_TARGET_OPENSBI_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,opensbi,sun20i-changes-v5)/opensbi-sun20i-changes-v5.tar.gz"
+BR2_TARGET_OPENSBI_PLAT="generic"
+# BR2_TARGET_OPENSBI_INSTALL_JUMP_IMG is not set
+BR2_TARGET_UBOOT=y
+BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
+# ikruusa/u-boot, branch sun20i-dsp-v1 (+ Nezha defconfig and DSP carveout)
+BR2_TARGET_UBOOT_CUSTOM_TARBALL=y
+BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,sun20i-dsp-v1)/u-boot-sun20i-dsp-v1.tar.gz"
+BR2_TARGET_UBOOT_BOARD_DEFCONFIG="nezha"
+BR2_TARGET_UBOOT_NEEDS_PYLIBFDT=y
+BR2_TARGET_UBOOT_NEEDS_OPENSSL=y
+BR2_TARGET_UBOOT_NEEDS_OPENSBI=y
+# BR2_TARGET_UBOOT_FORMAT_BIN is not set
+BR2_TARGET_UBOOT_FORMAT_CUSTOM=y
+BR2_TARGET_UBOOT_FORMAT_CUSTOM_NAME="u-boot-sunxi-with-spl.bin"
+BR2_PACKAGE_HOST_GENIMAGE=y
