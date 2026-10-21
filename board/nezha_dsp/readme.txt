@@ -25,9 +25,23 @@ adapted from the last revision that existed; its DRAM parameters are
 identical to the Lichee RV Dock's, which is the part that would otherwise
 be board specific and hard to get right.
 
+Relationship to configs/nezha_defconfig
+---------------------------------------
+This tree already carries a plain Nezha configuration. The DSP variant
+reuses its board directory rather than duplicating it:
+
+    board/nezha/genimage.cfg     shared - the SD layout is identical
+    board/nezha/overlay/         shared, then overridden below
+    board/nezha_dsp/overlay/     extlinux.conf (+ clk_ignore_unused) and
+                                 the DSP firmware
+
+Only the defconfig itself differs, and deliberately so: Linux comes from
+the d1-hwspinlock-test branch instead of 6.6.22, U-Boot from sun20i-dsp-v1
+instead of the smaeul fork, and the headers are 7.1 instead of 6.6.
+
 Build
 -----
-    make sipeed_nezha_dsp_defconfig
+    make nezha_dsp_defconfig
     make
 
     output/images/sdcard.img
@@ -54,7 +68,7 @@ Dock targets, since they describe the SoC rather than the board:
 The command line comes from this board's overlay and adds
 clk_ignore_unused:
 
-    board/sipeed/nezha_dsp/overlay/boot/extlinux/extlinux.conf
+    board/nezha_dsp/overlay/boot/extlinux/extlinux.conf
 
 Without it mainline's ccu-sun20i-d1 gates CLK_DSP and CLK_BUS_DSP_CFG a few
 seconds into boot, because nothing claims them, and the running DSP stops
@@ -65,7 +79,7 @@ DSP firmware
 The firmware is a prebuilt blob in the overlay. Buildroot does not build it
 and nothing at build time refers to a FreeRTOS tree:
 
-    board/sipeed/nezha_dsp/overlay/root/dsp/dsp.elf
+    board/nezha_dsp/overlay/root/dsp/dsp.elf
 
 It is installed verbatim as /root/dsp/dsp.elf. To use a different build,
 copy the ELF over it and rerun make. Note that the same file also lives in
