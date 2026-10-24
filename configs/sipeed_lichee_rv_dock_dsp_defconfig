@@ -5,7 +5,7 @@ BR2_GCC_VERSION_16_X=y
 BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
 BR2_ROOTFS_OVERLAY="board/sipeed/lichee_rv/overlay board/sipeed/lichee_rv_dock/overlay board/sipeed/lichee_rv_dock_dsp/overlay"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh board/sipeed/lichee_rv_dock_dsp/post-image.sh"
-BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/sipeed/lichee_rv_dock_dsp/genimage.cfg"
+BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/sipeed/lichee_rv_dock/genimage.cfg"
 BR2_LINUX_KERNEL=y
 # ikruusa/linux, branch d1-hwspinlock-test (3 hwspinlock patches + test module)
 BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
