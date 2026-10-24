@@ -38,6 +38,11 @@ The hwspinlock test module shares a block at 0x483ff000 with the DSP. If
 the DSP is not running, `modprobe d1_hwlock_test` reports
 "NON-RESULT: DSP never ran" instead of a false pass.
 
+`modprobe d1_hwlock_test bench=N` measures the lock instead of testing it:
+with N=1..4 it prints progressively finer breakdowns (raw register access,
+the hwspinlock API, the DSP's own take/free, and the pieces the API is built
+from). The DSP stays idle during those, so they need it loaded but not busy.
+
 Checks
 ------
 - `rproc list` empty: device tree or driver binding problem, not hardware.

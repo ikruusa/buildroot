@@ -82,11 +82,17 @@ autoboot" to land at the => prompt. If you miss it, reset and retry.
     ext4load mmc 0:1 0x42000000 /root/dsp/dsp.elf
     rproc init
     rproc list
-    rproc load 0 0x42000000 0x1fcf4
+    rproc load 0 0x42000000 0x1fdac
     rproc start 0
 
-0x1fcf4 = 130292, the byte count ext4load prints. `boot` then continues
+0x1fdac = 130476, the byte count ext4load prints. `boot` then continues
 to Linux.
+
+Then, in Linux:
+
+    modprobe d1_hwlock_test              # positive control
+    modprobe d1_hwlock_test use_lock=0   # negative control
+    modprobe d1_hwlock_test bench=4 trials=1000000   # microbenchmark
 
 Notes
 -----
