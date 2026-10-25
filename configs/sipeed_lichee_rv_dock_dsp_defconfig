@@ -9,7 +9,7 @@ BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/sipeed/lichee_rv_dock/genimage.cfg"
 BR2_LINUX_KERNEL=y
 # ikruusa/linux, branch d1-hwspinlock-test (3 hwspinlock patches + test module)
 BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
-BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,d1-hwspinlock-test)/linux-d1-hwspinlock-test.tar.gz"
+BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,d1-cache-v1)/linux-d1-cache-v1.tar.gz"
 BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/sipeed/lichee_rv_dock/linux.config"
 BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="board/sipeed/lichee_rv_dock_dsp/linux-hwlock.fragment"
@@ -33,7 +33,7 @@ BR2_TARGET_UBOOT=y
 BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
 # ikruusa/u-boot, branch sun20i-dsp-v1 (+ hwlock/carveout test scaffolding)
 BR2_TARGET_UBOOT_CUSTOM_TARBALL=y
-BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,sun20i-dsp-v1)/u-boot-sun20i-dsp-v1.tar.gz"
+BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,sun20i-dsp-cache-v1)/u-boot-sun20i-dsp-cache-v1.tar.gz"
 BR2_TARGET_UBOOT_BOARD_DEFCONFIG="lichee_rv_dock"
 BR2_TARGET_UBOOT_NEEDS_PYLIBFDT=y
 BR2_TARGET_UBOOT_NEEDS_OPENSSL=y
