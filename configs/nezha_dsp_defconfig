@@ -7,9 +7,10 @@ BR2_ROOTFS_OVERLAY="board/nezha/overlay board/nezha_dsp/overlay"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh board/nezha_dsp/post-image.sh"
 BR2_ROOTFS_POST_SCRIPT_ARGS="-c board/nezha/genimage.cfg"
 BR2_LINUX_KERNEL=y
-# ikruusa/linux, branch d1-hwspinlock-test (3 hwspinlock patches + test module)
+# ikruusa/linux, branch v7-4-21a7f44-hwspinlock: vanilla v7.4 (torvalds
+# 21a7f44fd076) plus the hwspinlock series and the test module
 BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
-BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,d1-cache-v1)/linux-d1-cache-v1.tar.gz"
+BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,linux,v7-4-21a7f44-hwspinlock)/linux-v7-4-21a7f44-hwspinlock.tar.gz"
 BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/sipeed/lichee_rv_dock/linux.config"
 BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="board/sipeed/lichee_rv_dock_dsp/linux-hwlock.fragment"
@@ -29,9 +30,10 @@ BR2_TARGET_OPENSBI_PLAT="generic"
 # BR2_TARGET_OPENSBI_INSTALL_JUMP_IMG is not set
 BR2_TARGET_UBOOT=y
 BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
-# ikruusa/u-boot, branch sun20i-dsp-v1 (+ Nezha defconfig and DSP carveout)
+# ikruusa/u-boot, branch v2027.01-rc1-d1-v1-dsp: the sun20i base series plus the
+# HiFi4 remoteproc driver, the Nezha defconfig and the hwspinlock test node
 BR2_TARGET_UBOOT_CUSTOM_TARBALL=y
-BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,sun20i-dsp-cache-v1)/u-boot-sun20i-dsp-cache-v1.tar.gz"
+BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION="$(call github,ikruusa,u-boot,v2027.01-rc1-d1-v1-dsp)/u-boot-v2027.01-rc1-d1-v1-dsp.tar.gz"
 BR2_TARGET_UBOOT_BOARD_DEFCONFIG="nezha"
 BR2_TARGET_UBOOT_NEEDS_PYLIBFDT=y
 BR2_TARGET_UBOOT_NEEDS_OPENSSL=y
